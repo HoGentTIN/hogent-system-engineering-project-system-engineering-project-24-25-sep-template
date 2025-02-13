@@ -1,0 +1,122 @@
+!
+! Switch configuration for SEP 2024-25
+! config with seperate VLANs for each group, trunked to router-on-a-stick on rISP
+! NAT between each of these subnets (within 192.168.0.0/16) towards the B.4.037 network
+!
+hostname rISP
+!
+interface GigabitEthernet0/0/1
+ ip dhcp client
+ ip address dhcp
+ ip nat outside
+ negotiation auto
+!
+interface GigabitEthernet0/0/0
+ description Connect-port for administrator - native zonder tags 
+ ip address 192.168.200.12 255.255.255.248
+ negotiation auto
+!
+interface GigabitEthernet0/0/0.200
+ description TestUp voor lectoren
+ encapsulation dot1Q 200
+ ip address 192.168.200.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.201
+ encapsulation dot1Q 201
+ ip address 192.168.201.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.202
+ encapsulation dot1Q 202
+ ip address 192.168.202.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.203
+ encapsulation dot1Q 203
+ ip address 192.168.203.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.204
+ encapsulation dot1Q 204
+ ip address 192.168.204.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.205
+ encapsulation dot1Q 205
+ ip address 192.168.205.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.206
+ encapsulation dot1Q 206
+ ip address 192.168.206.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.207
+ encapsulation dot1Q 207
+ ip address 192.168.207.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.208
+ encapsulation dot1Q 208
+ ip address 192.168.208.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.209
+ encapsulation dot1Q 209
+ ip address 192.168.209.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.210
+ encapsulation dot1Q 210
+ ip address 192.168.210.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.211
+ encapsulation dot1Q 211
+ ip address 192.168.211.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.212
+ encapsulation dot1Q 212
+ ip address 192.168.212.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.213
+ encapsulation dot1Q 213
+ ip address 192.168.213.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.214
+ encapsulation dot1Q 214
+ ip address 192.168.214.1 255.255.255.252
+ ip nat inside
+!
+interface GigabitEthernet0/0/0.215
+ encapsulation dot1Q 215
+ ip address 192.168.215.1 255.255.255.252
+ ip nat inside
+!
+ip nat inside source list 1 interface GigabitEthernet0/0/1 overload
+!
+ip route 192.168.200.0 255.255.255.0 192.168.200.2
+ip route 192.168.201.0 255.255.255.0 192.168.201.2
+ip route 192.168.202.0 255.255.255.0 192.168.202.2
+ip route 192.168.203.0 255.255.255.0 192.168.203.2
+ip route 192.168.204.0 255.255.255.0 192.168.204.2
+ip route 192.168.205.0 255.255.255.0 192.168.205.2
+ip route 192.168.206.0 255.255.255.0 192.168.206.2
+ip route 192.168.207.0 255.255.255.0 192.168.207.2
+ip route 192.168.208.0 255.255.255.0 192.168.208.2
+ip route 192.168.209.0 255.255.255.0 192.168.209.2
+ip route 192.168.210.0 255.255.255.0 192.168.210.2
+ip route 192.168.211.0 255.255.255.0 192.168.211.2
+ip route 192.168.212.0 255.255.255.0 192.168.212.2
+ip route 192.168.213.0 255.255.255.0 192.168.213.2
+ip route 192.168.214.0 255.255.255.0 192.168.214.2
+ip route 192.168.215.0 255.255.255.0 192.168.215.2
+!
+ip access-list standard 1
+ 10 permit 192.168.0.0 0.0.255.255
+!
+end
