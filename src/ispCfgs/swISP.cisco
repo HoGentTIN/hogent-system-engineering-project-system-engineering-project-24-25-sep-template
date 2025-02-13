@@ -5,11 +5,11 @@
 hostname swISP
 !
 interface Vlan1
- ip address 192.168.100.246 255.255.255.248
+ ip address 192.168.200.13 255.255.255.248
 !
 interface GigabitEthernet1/0/23
  description Connect-port for administrator
- switchport access vlan 2
+ switchport access vlan 1
  switchport mode access
 !
 interface GigabitEthernet1/0/24
