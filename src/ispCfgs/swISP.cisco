@@ -1,0 +1,135 @@
+!
+! Switch configuration for SEP 2024-25
+! config with seperate VLANs for each group, trunked to router-on-a-stick on rISP
+!
+hostname swISP
+!
+interface Vlan1
+ ip address 192.168.200.13 255.255.255.248
+!
+interface GigabitEthernet1/0/19
+ description Connect-port for administrator
+ switchport access vlan 1
+ switchport mode access
+!
+interface GigabitEthernet1/0/24
+ description UpLink port from switch to router-on-a-stick ISP
+ switchport mode trunk
+ switchport trunk allowed vlan 200-223
+!
+! ports 1-15 are for groups <X> to uplink, put into corresponding vlan 20<X>
+!
+interface GigabitEthernet1/0/1
+ switchport access vlan 201
+ switchport mode access
+!
+interface GigabitEthernet1/0/2
+ switchport access vlan 202
+ switchport mode access
+!
+interface GigabitEthernet1/0/3
+ switchport access vlan 203
+ switchport mode access
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 204
+ switchport mode access
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 205
+ switchport mode access
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 206
+ switchport mode access
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 207
+ switchport mode access
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 208
+ switchport mode access
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 209
+ switchport mode access
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 210
+ switchport mode access
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 211
+ switchport mode access
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 212
+ switchport mode access
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 213
+ switchport mode access
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 214
+ switchport mode access
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 215
+ switchport mode access
+!
+! Subnets for Aalst on ports 21-23
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 221
+ switchport mode access
+!
+interface GigabitEthernet1/0/22
+ switchport access vlan 222
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 223
+ switchport mode access
+!
+! And a subnet to test for ourselves!
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 200
+ switchport mode access
+!
+! All other ports go into vlan 99, a parking Lot
+!
+vlan 99
+ name NoConnect
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/1/1
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/1/2
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/1/3
+ switchport access vlan 99
+ switchport mode access
+!
+interface GigabitEthernet1/1/4
+ switchport access vlan 99
+ switchport mode access
+!
+end
