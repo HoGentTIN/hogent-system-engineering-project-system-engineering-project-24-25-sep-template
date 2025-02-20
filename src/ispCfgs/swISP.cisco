@@ -7,7 +7,7 @@ hostname swISP
 interface Vlan1
  ip address 192.168.200.13 255.255.255.248
 !
-interface GigabitEthernet1/0/23
+interface GigabitEthernet1/0/19
  description Connect-port for administrator
  switchport access vlan 1
  switchport mode access
@@ -15,7 +15,7 @@ interface GigabitEthernet1/0/23
 interface GigabitEthernet1/0/24
  description UpLink port from switch to router-on-a-stick ISP
  switchport mode trunk
- switchport trunk allowed vlan 200-215
+ switchport trunk allowed vlan 200-223
 !
 ! ports 1-15 are for groups <X> to uplink, put into corresponding vlan 20<X>
 !
@@ -79,7 +79,23 @@ interface GigabitEthernet1/0/15
  switchport access vlan 215
  switchport mode access
 !
+! Subnets for Aalst on ports 21-23
+!
+interface GigabitEthernet1/0/21
+ switchport access vlan 221
+ switchport mode access
+!
 interface GigabitEthernet1/0/22
+ switchport access vlan 222
+ switchport mode access
+!
+interface GigabitEthernet1/0/23
+ switchport access vlan 223
+ switchport mode access
+!
+! And a subnet to test for ourselves!
+!
+interface GigabitEthernet1/0/20
  switchport access vlan 200
  switchport mode access
 !
@@ -97,18 +113,6 @@ interface GigabitEthernet1/0/17
  switchport mode access
 !
 interface GigabitEthernet1/0/18
- switchport access vlan 99
- switchport mode access
-!
-interface GigabitEthernet1/0/19
- switchport access vlan 99
- switchport mode access
-!
-interface GigabitEthernet1/0/20
- switchport access vlan 99
- switchport mode access
-!
-interface GigabitEthernet1/0/21
  switchport access vlan 99
  switchport mode access
 !
